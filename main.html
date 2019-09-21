@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>upload</title>
+    <style>
+        form{ border: 1px solid red;}
+    </style>
+</head>
+<body>
+<form id=f action="" method="post">
+    <div>
+        <input type="file" name="file">
+    </div>
+    <div>
+        <input type="submit" value="提交">
+    </div>
+</form>
+<div>
+    <img id=img src="" alt="">
+</div>
+<script>
+    f.addEventListener('submit', function(e){
+        e.preventDefault();
+        var formData = new FormData();
+        var fileInput = document.querySelector('input[name="file"]');
+        formData.append('file', fileInput.files[0]);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://127.0.0.1:3000/upload');
+        xhr.onload = function() {
+            console.log(xhr.response);
+            img.src= 'http://127.0.0.1:3000/preview/' + xhr.response;
+        };
+        xhr.send(formData);
+    });
+</script>
+</body>
+</html>
