@@ -28,4 +28,6 @@ app.get('/preview/:id', cors(), (req, res)=> {
     })
 })
 
-app.listen(3000)
+var port = process.env.PORT || 3000
+console.log('port:',port)
+app.listen(port)
