@@ -11,7 +11,8 @@ app.get('/', (req, res, next)=> {
 
 app.post('/upload', cors(), upload.single('file'), (req, res, next)=> {
     // res.set('Access-Control-Allow-Origin', '*') instead by cors()
-    res.send(req.file.filename)
+    let obj = {id: req.file.filename}
+    res.send(JSON.stringify(obj))
 })
 
 app.get('/preview/:id', cors(), (req, res)=> {
